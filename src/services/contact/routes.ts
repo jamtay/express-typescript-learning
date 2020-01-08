@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { addNewContact, getContacts, getContactWithID, updateContact, deleteContact } from "./controllers/contactController";
+import {handleDeletedResponse} from "./response/deleted";
 
 export default [
   {
@@ -6,9 +8,7 @@ export default [
     method: "get",
     handler: [
       async (req: Request, res: Response) => {
-        res.status(200).send({
-          message: "SUCCESSFUL GET REQUEST"
-        });
+        res.json(await getContacts(req, res));
       }
     ]
   }, {
@@ -16,9 +16,7 @@ export default [
     method: "post",
     handler: [
       async (req: Request, res: Response) => {
-        res.status(200).send({
-          message: "SUCCESSFUL POST REQUEST"
-        });
+        res.json(await addNewContact(req, res));
       }
     ]
   }, {
@@ -26,9 +24,7 @@ export default [
     method: "get",
     handler: [
       async (req: Request, res: Response) => {
-        res.status(200).send({
-          message: "SUCCESSFUL GET single REQUEST"
-        });
+        res.json(await getContactWithID(req, res));
       }
     ]
   }, {
@@ -36,9 +32,7 @@ export default [
     method: "put",
     handler: [
       async (req: Request, res: Response) => {
-        res.status(200).send({
-          message: "SUCCESSFUL PUT single REQUEST"
-        });
+        res.json(await updateContact(req, res));
       }
     ]
   }, {
@@ -46,9 +40,8 @@ export default [
     method: "delete",
     handler: [
       async (req: Request, res: Response) => {
-        res.status(200).send({
-          message: "SUCCESSFUL DELETE single REQUEST"
-        });
+        const result = handleDeletedResponse(await deleteContact(req, res), req.params.contactId);
+        res.json(result);
       }
     ]
   }
