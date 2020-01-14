@@ -1,6 +1,13 @@
 This is based on https://itnext.io/production-ready-node-js-rest-apis-setup-using-typescript-postgresql-and-redis-a9525871407
 and this series: https://itnext.io/building-restful-web-apis-with-node-js-express-mongodb-and-typescript-part-2-98c34e3513a2?
 
+**TO run**
+- Install mongo [here](https://github.com/mongodb/homebrew-brew)
+- Start mongo: `brew services start mongodb-community@4.2`
+- `npm install`
+- `Add env file (as below)`
+- `npm start`
+
 ```bash
 alias startMongo='brew services start mongodb-community@4.2'
 alias stopMongo='brew services stop mongodb-community@4.2'
