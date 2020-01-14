@@ -1,4 +1,3 @@
-
 import request from "request-promise";
 import * as Provider from "./OpenCageDataProvider";
 
